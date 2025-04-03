@@ -48,13 +48,11 @@ const Login = () => {
             console.log("Form submitted successfully!");
         };
     const handleChange = (event) => {
-        console.log("Input field changed");
         const { name, value } = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
-        console.log(name, value)
     }
 
     const handleSignUp = () => {
