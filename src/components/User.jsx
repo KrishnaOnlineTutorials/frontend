@@ -3,16 +3,11 @@ import { UserContext } from "../App";
 
 const User = (props) => {
     const {name, email, age, handleButtonClick} = props;
-    // const {setChildData} = useContext(UserContext)
-    // console.log(props)
     const buttonHandler = () =>{
         console.log('Button has been clicked');
-        // handleButtonClick && handleButtonClick({'location': 'Hyderabad'})
-        // setChildData && setChildData({'location': 'Hyderabad'})
     }
-    // console.log(name, email, age);
     return (
-    <div style={{width: '200px',
+    <div className="user-card" style={{width: '200px',
         border: '1px solid grey',
         borderRadius: '10px',
         textAlign: 'left',

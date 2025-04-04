@@ -2,24 +2,22 @@ import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserLogStatus } from "../redux/loggedUserSlice";
 import { UserContext } from "../App";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
-    // const { setIsLoggedIn } = useContext(UserContext);
     const dispatch = useDispatch();
     const onLogout = (event) => {
+        console.log(event.target)
         event.preventDefault()
-        console.log("Logout clicked");
-        // setIsLoggedIn(false);
         dispatch(updateUserLogStatus(false));
     }
     return (
         <nav className="navigation">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/users">Users</a></li>
-                {/* <li><a href="/userform">Userform</a></li> */}
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/users">Users</Link></li>
             </ul>
-            <button onClick={onLogout}>Logout</button>
+            <button onClick={() =>{}}>Logout</button>
         </nav>
     );
 }

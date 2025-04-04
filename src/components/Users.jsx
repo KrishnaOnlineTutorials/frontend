@@ -21,8 +21,7 @@ const Users = (props) => {
     return (
         <React.Fragment>
             <h1>List of Users</h1>
-            <div className={'user-container'}>
-            <div className="user-card">
+            <div className="users-container">
                 {
                     users.map((user, index) => {
                         return <User key={index} {...user} />
@@ -30,8 +29,6 @@ const Users = (props) => {
                     })
                 }
             </div>
-            </div>
-            
         </React.Fragment>
     );
 }

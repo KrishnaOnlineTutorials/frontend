@@ -9,10 +9,9 @@ const loggedUserSlice = createSlice({
     initialState,
     reducers: {
         updateUserLogStatus: (state, action) => {
-            // const { field, value } = action.payload;
-            // state[field] = value
-            console.log("Updating user login status");
-            state.isLoggedIn = action.payload;
+            if (typeof action.payload === 'boolean') {
+                state.isLoggedIn = action.payload;
+            }
         }
     }
 })
