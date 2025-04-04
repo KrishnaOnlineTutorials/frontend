@@ -8,7 +8,12 @@ const Users = (props) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const usersResponse = await fetch('http://localhost:5000/users')
+            const usersResponse = await fetch('http://localhost:5000/users', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    }
+                })
                 const usersList = await usersResponse.json()
                 setUsers(usersList)
             }

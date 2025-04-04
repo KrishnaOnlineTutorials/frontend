@@ -18,7 +18,7 @@ const User = (props) => {
         </p>
         <p><b>email:</b> {email}</p>
         <p><b>age:</b> {age}</p>
-        {/* <button onClick={buttonHandler}>PassInfoToParent</button> */}
+    {/* <button onClick={buttonHandler}>PassInfoToParent</button> */}
     </div>
     )
 }

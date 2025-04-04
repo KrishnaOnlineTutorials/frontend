@@ -39,6 +39,7 @@ const Login = () => {
     
                 const result = await response.json();
                 console.log('Form submitted successfully:', result);
+                localStorage.setItem('token', result.token);
                 dispatch(updateUserLogStatus(true));
             } catch (error) {
                 console.error('Error submitting the form:', error);
