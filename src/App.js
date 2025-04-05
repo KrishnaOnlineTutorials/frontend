@@ -54,3 +54,15 @@ export default App;
 // Testing 
 // Deployment
 // Github
+
+
+// jwt - localStorage - set a cookie and read a cookie
+// https://dummyjson.com/products - construct a products listing page
+// https://dummyjson.com/products/1 - construct a product details page
+// https://dummyjson.com/products/add - construct a add product page
+
+// CRUD operations -
+// Create Products Collection
+// Respective API support
+
+//https://www.codevertiser.com/import-json-file-to-mongodb-using-nodejs/
