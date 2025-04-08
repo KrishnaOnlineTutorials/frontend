@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    isLoggedIn: false
+    isLoggedIn: !!localStorage.getItem('token'),
+    role: localStorage.getItem('role') || null,
 }
 
 const loggedUserSlice = createSlice({
@@ -9,8 +10,16 @@ const loggedUserSlice = createSlice({
     initialState,
     reducers: {
         updateUserLogStatus: (state, action) => {
-            if (typeof action.payload === 'boolean') {
-                state.isLoggedIn = action.payload;
+            state.isLoggedIn = action.payload.isLoggedIn;
+            if (action.payload.role !== undefined) {
+                state.role = action.payload.role;
+            }
+            // Store token and role in localStorage
+            if (action.payload.isLoggedIn) {
+                localStorage.setItem('role', action.payload.role);
+            } else {
+                localStorage.removeItem('token');
+                localStorage.removeItem('role');
             }
         }
     }

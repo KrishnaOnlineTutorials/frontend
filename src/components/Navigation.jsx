@@ -7,9 +7,8 @@ import { Link } from "react-router-dom";
 const Navigation = () => {
     const dispatch = useDispatch();
     const onLogout = (event) => {
-        console.log(event.target)
         event.preventDefault()
-        dispatch(updateUserLogStatus(false));
+        dispatch(updateUserLogStatus({isLoggedIn: false}));
     }
     return (
         <nav className="navigation">
@@ -17,7 +16,7 @@ const Navigation = () => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/users">Users</Link></li>
             </ul>
-            <button onClick={() =>{}}>Logout</button>
+            <button onClick={onLogout}>Logout</button>
         </nav>
     );
 }

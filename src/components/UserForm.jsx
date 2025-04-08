@@ -3,18 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateForm } from "../redux/formSlice";
 import { updateUserLogStatus } from "../redux/loggedUserSlice";
 import { UserContext } from "../App";
+import CryptoJS from 'crypto-js';
 import './userform.css'
 
 const UserForm = () => {
     const dispatch = useDispatch();
     const formData = useSelector((state) => state.form);
     const loggedUserData = useSelector((state) => state.loggedUser);
-    console.log(loggedUserData, 'loggedUserData')
-    // const { setIsLoggedIn } = useContext(UserContext);
-    // console.log(setIsLoggedIn)
     const handleChange = (event) => {
         const { name, value } = event.target;
-        console.log(name, value)
         dispatch(updateForm({ field: name, value }))
     }
 
@@ -33,14 +30,14 @@ const UserForm = () => {
         }
 
         // Encrypt the password
-        // const encryptedPassword = CryptoJS.AES.encrypt(formData.password, "secret-key").toString();
+        const encryptedPassword = CryptoJS.AES.encrypt(formData.password, "secret-key").toString();
 
         // Log the form data (you can replace this with an API call)
         const userData = {
             name: formData.name,
             email: formData.email,
             age: formData.age,
-            password: formData.password, // Encrypted password
+            password: encryptedPassword, // Encrypted password
         }
 
         try {
@@ -62,7 +59,7 @@ const UserForm = () => {
             const result = await response.json();
             console.log('Form submitted successfully:', result);
             // setIsLoggedIn(true);
-            dispatch(updateUserLogStatus(true));
+            dispatch(updateUserLogStatus({isLoggedIn: false}));
             // alert("Form submitted successfully!");
         } catch (error) {
             console.error('Error submitting the form:', error);

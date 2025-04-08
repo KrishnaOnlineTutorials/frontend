@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from "react";
 import User from "./User";
 import './Users.css'
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUsers } from "../redux/usersSlice";
 
 
 const Users = (props) => {
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch()
+    const { usersList, loading, error } = useSelector((state) => state.users)
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-            const usersResponse = await fetch('http://localhost:5000/users', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('token')
-                    }
-                })
-                const usersList = await usersResponse.json()
-                setUsers(usersList)
-            }
-            catch (error) {
-                console.log(error)
-            }
-        }
-        fetchUsers()
+        dispatch(fetchUsers())
     }, [])
+    if(loading) {
+        return <div>Loading...</div>
+    }
+
+    if(error) {
+        return <div>Error: {error}</div>
+    }
+    
     return (
         <React.Fragment>
             <h1>List of Users</h1>
             <div className="users-container">
                 {
-                    users.map((user, index) => {
-                        return <User key={index} {...user} />
-                        // handleButtonClick={props.handleButtonClick}
+                    usersList.map((user, index) => {
+                        return <User key={index} userData={user}/>
                     })
                 }
             </div>
