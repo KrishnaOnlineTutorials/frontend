@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import API_BASE_URL from '../apiConfig';
 
 // Async thunk to fetch users from the backend
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async (_, { rejectWithValue }) => {
     try {
-        const response = await fetch('http://localhost:5000/users', {
+        const response = await fetch(`${API_BASE_URL}/users`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('token'),

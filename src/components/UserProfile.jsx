@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateUser, deleteUser } from "../redux/usersSlice"; // Add these actions in your slice
+import API_BASE_URL from "../apiConfig";
 
 const UserProfile = () => {
     const { id } = useParams(); // Get the user ID from the route parameters
@@ -29,7 +30,7 @@ const UserProfile = () => {
             // If user, fetch user data from the backend
             const fetchUser = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/users/${id}`);
+                    const response = await fetch(`${API_BASE_URL}/users/${id}`);
                     if (!response.ok) {
                         throw new Error("Failed to fetch user data");
                     }
@@ -87,30 +88,33 @@ const UserProfile = () => {
             {isEditMode ? (
                 <form onSubmit={handleFormSubmit}>
                     <div>
-                        <label>Name:</label>
+                        <label for="name">Name:</label>
                         <input
                             type="text"
                             name="name"
+                            id="name"
                             value={formData.name}
                             onChange={handleInputChange}
                             required
                         />
                     </div>
                     <div>
-                        <label>Email:</label>
+                        <label for="email">Email:</label>
                         <input
                             type="email"
                             name="email"
+                            id="email"
                             value={formData.email}
                             onChange={handleInputChange}
                             required
                         />
                     </div>
                     <div>
-                        <label>Age:</label>
+                        <label for="age">Age:</label>
                         <input
                             type="number"
                             name="age"
+                            id="age"
                             value={formData.age}
                             onChange={handleInputChange}
                             required

@@ -5,6 +5,7 @@ import { updateUserLogStatus } from "../redux/loggedUserSlice";
 import { UserContext } from "../App";
 import CryptoJS from 'crypto-js';
 import './userform.css'
+import API_BASE_URL from "../apiConfig";
 
 const UserForm = () => {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const UserForm = () => {
         try {
             // Make the POST request
             const authToken = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5000/users', {
+            const response = await fetch(`${API_BASE_URL}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

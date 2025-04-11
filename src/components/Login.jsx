@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { updateUserLogStatus } from "../redux/loggedUserSlice";
 import CryptoJS from 'crypto-js';
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../apiConfig";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Login = () => {
     
             // Encrypt the password
             const encryptedPassword = CryptoJS.AES.encrypt(formData.password, "secret-key").toString();
+            console.log(formData.password, encryptedPassword)
             const authUser = {
                 email: formData.email,
                 password: encryptedPassword,
@@ -30,7 +32,8 @@ const Login = () => {
     
             try {
                 // Make the POST request
-                const response = await fetch('http://localhost:5000/auth', {
+                console.log(API_BASE_URL)
+                const response = await fetch(`${API_BASE_URL}/auth`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
